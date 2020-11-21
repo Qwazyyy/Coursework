@@ -1,0 +1,60 @@
+﻿<Page x:Class="Coursework.View.ServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PricePage" Background="White">
+
+    <Page.Resources>
+        <DataTemplate x:Key="listDataTemplate">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock> <Bold>Наименование работы: </Bold></TextBlock>
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock> <Bold>Единица измерения: </Bold></TextBlock>
+                    <TextBlock Text="{Binding Path=UnitOfMeasurement}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock> <Bold>Цена, рублей: </Bold></TextBlock>
+                    <TextBlock Text="{Binding Path=Price}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="PriceDataGrid" Grid.Row="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название работы" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Единица измерения" Binding="{Binding Path=UnitOfMeasurement}"/>
+                <DataGridTextColumn Header="Цена за единицу измерения, руб." Binding="{Binding Path=Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ListBox x:Name="ServiceList" Grid.Row="1" FontSize="16" ItemTemplate="{StaticResource listDataTemplate}" ItemsPanel="{StaticResource listItemsPanelTemplate}"/>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="AddButton" Grid.Column="0" Content="Добавить" Click="AddButton_Click"/>
+            <Button Grid.Column="1" Content="Изменить"/>
+            <Button Grid.Column="2" Content="Удалить"/>
+        </Grid>
+    </Grid>
+</Page>
