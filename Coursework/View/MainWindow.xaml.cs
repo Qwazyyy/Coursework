@@ -154,9 +154,9 @@ namespace Coursework.View
             Frame.Navigate(new MainPage());
             MainPage.Background = Brushes.MediumTurquoise;
             ClientPage.Background = Brushes.Teal;
-            ReportPage.Background = Brushes.Teal;
-            PricePage.Background = Brushes.Teal;
-            OrdersPage.Background = Brushes.Teal;
+            EstimatePage.Background = Brushes.Teal;
+            ServicePage.Background = Brushes.Teal;
+            ContractPage.Background = Brushes.Teal;
 
         }
 
@@ -165,39 +165,39 @@ namespace Coursework.View
             Frame.Navigate(new ClientPage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.MediumTurquoise;
-            ReportPage.Background = Brushes.Teal;
-            PricePage.Background = Brushes.Teal;
-            OrdersPage.Background = Brushes.Teal;
+            EstimatePage.Background = Brushes.Teal;
+            ServicePage.Background = Brushes.Teal;
+            ContractPage.Background = Brushes.Teal;
         }
 
-        private void ReportPage_Click(object sender, RoutedEventArgs e)
+        private void ContractPage_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(new ContractPage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
-            ReportPage.Background = Brushes.MediumTurquoise;
-            PricePage.Background = Brushes.Teal;
-            OrdersPage.Background = Brushes.Teal;
+            EstimatePage.Background = Brushes.Teal;
+            ServicePage.Background = Brushes.Teal;
+            ContractPage.Background = Brushes.MediumTurquoise;
         }
 
-        private void PricePage_Click(object sender, RoutedEventArgs e)
+        private void ServicePage_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(new ServicePage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
-            ReportPage.Background = Brushes.Teal;
-            PricePage.Background = Brushes.MediumTurquoise;
-            OrdersPage.Background = Brushes.Teal;
+            EstimatePage.Background = Brushes.Teal;
+            ServicePage.Background = Brushes.MediumTurquoise;
+            ContractPage.Background = Brushes.Teal;
         }
 
-        private void OrderPage_Click(object sender, RoutedEventArgs e)
+        private void EstimatePage_Click(object sender, RoutedEventArgs e)
         {
-            //Frame.Navigate(new ServicePage());
+            Frame.Navigate(new EstimatePage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
-            ReportPage.Background = Brushes.Teal;
-            PricePage.Background = Brushes.Teal;
-            OrdersPage.Background = Brushes.MediumTurquoise;
+            EstimatePage.Background = Brushes.MediumTurquoise;
+            ServicePage.Background = Brushes.Teal;
+            ContractPage.Background = Brushes.Teal;
         }
     }
 }

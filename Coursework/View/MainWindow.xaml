@@ -28,9 +28,9 @@
             </Grid.RowDefinitions>
             <Button x:Name="MainPage" Grid.Row="0" Style="{StaticResource ButtonNavMenu}" Click="MainPage_Click">Главная</Button>
             <Button x:Name="ClientPage" Grid.Row="1"  Style="{StaticResource ButtonNavMenu}" Click="ClientPage_Click">Клиенты</Button>
-            <Button x:Name="PricePage" Grid.Row="2"  Style="{StaticResource ButtonNavMenu}" Click="PricePage_Click">Расценки</Button>
-            <Button x:Name="OrdersPage" Grid.Row="3"  Style="{StaticResource ButtonNavMenu}" Click="OrderPage_Click">Заказы</Button>
-            <Button x:Name="ReportPage" Grid.Row="4"  Style="{StaticResource ButtonNavMenu}" Click="ReportPage_Click">Отчеты</Button>
+            <Button x:Name="ContractPage" Grid.Row="2"  Style="{StaticResource ButtonNavMenu}" Click="ContractPage_Click">Договоры</Button>
+            <Button x:Name="EstimatePage" Grid.Row="3"  Style="{StaticResource ButtonNavMenu}" Click="EstimatePage_Click">Сметы</Button>
+            <Button x:Name="ServicePage" Grid.Row="4"  Style="{StaticResource ButtonNavMenu}" Click="ServicePage_Click">Расценки</Button>
 
             <StackPanel Grid.Row="5">
                 <!--<Button x:Name="Exit"  Style="{StaticResource ButtonNavMenu}">Выход</Button>-->

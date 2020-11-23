@@ -1,0 +1,32 @@
+﻿<Page x:Class="Coursework.View.AddContractPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddContractPage" Background="White">
+    <Page.Resources>
+        <DataTemplate x:Key="comboBoxTemplate">
+            <TextBlock>
+                <Run Text="{Binding Path=FirstName}"/>
+                <Run Text="{Binding Path=LastName}"/>
+                <Run Text="{Binding Path=PhoneNumber}"/>
+            </TextBlock>
+        </DataTemplate>
+    </Page.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Выберите клиента"/>
+            <!--ItemTemplate="{Binding comboBoxTemplate}"-->
+            <ComboBox x:Name="ClientsComboBox" ItemTemplate="{StaticResource comboBoxTemplate}" SelectionChanged="ClientsComboBox_SelectionChanged"/>
+            <TextBlock Text="Выберите дату окончания работ"/>
+            <DatePicker x:Name="DateFinal"/>
+            <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click"/>
+            <Button x:Name="BackButton" Content="Назад" Click="BackButton_Click"/>
+            <TextBlock x:Name="Status"/>
+        </StackPanel>
+    </Grid>
+</Page>

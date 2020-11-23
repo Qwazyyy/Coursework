@@ -53,13 +53,13 @@ namespace Coursework.View
 
         private void ClientList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Client test = (Client)ClientList.SelectedItem;
-            if(test != null)
-            {
-                MessageBox.Show(test.ID.ToString());
-                DatabaseService.DeleteRowFromClients(test.ID, _context);
-                clients.Remove(test);
-            }
+            //Client test = (Client)ClientList.SelectedItem;
+            //if(test != null)
+            //{
+            //    MessageBox.Show(test.ID.ToString());
+            //    DatabaseService.DeleteRowFromClients(test.ID, _context);
+            //    clients.Remove(test);
+            //}
         }
     }
 }
