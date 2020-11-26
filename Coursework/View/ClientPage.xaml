@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Coursework.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientPage" Background="White">
+      Title="ClientPage" Background="#8370D8" FontSize="18" >
 
     <Page.Resources>
         <DataTemplate x:Key="listTemplate">
@@ -29,18 +29,26 @@
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="ClientTable" Grid.Row="0" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=LastName}"/>
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=PhoneNumber}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" MinWidth="120">
+                    <TextBlock Text="По фамилии:" HorizontalAlignment="Right"/>
+                    <TextBlock Text="По номеру телефона:" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" MinWidth="150">
+                    <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged" Opacity="0.5"/>
+                    <Rectangle Height="1" Stroke="MediumTurquoise" Margin="0,0,0,5"/>
+                    <TextBox x:Name="ClientPhoneNumber" Text="" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientPhoneNumber_TextChanged" Opacity="0.5"/>
+                    <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
         <ListBox x:Name="ClientList" Grid.Row="1" FontSize="16" ItemTemplate="{StaticResource listTemplate}"
                  ItemsPanel="{StaticResource listItemsPanelTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ClientList_MouseDoubleClick"/>
 
@@ -55,8 +63,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
                 <Button x:Name="AddClient" Grid.Column="0" Content="Добавить" Click="AddClient_Click"/>
-                <Button Grid.Column="1" Content="Изменить" Click="EditClient_Click"/>
-                <Button Grid.Column="2" Content="Удалить"/>
+                <Button x:Name="EditClient" Grid.Column="1" Content="Изменить" Click="EditClient_Click"/>
+                <Button x:Name="DeletClient" Grid.Column="2" Content="Удалить" Click="DeletClient_Click"/>
         </Grid>
     </Grid>
 </Page>

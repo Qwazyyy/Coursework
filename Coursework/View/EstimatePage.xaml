@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Coursework.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EstimatePage" Background="White">
+      Title="EstimatePage" Background="White" FontSize="18">
 
     <Page.Resources>
         <DataTemplate x:Key="listTemplate">
@@ -62,7 +62,6 @@
             <ListBox x:Name="ContractList" FontSize="16" ItemTemplate="{StaticResource listTemplate}"
                  ItemsPanel="{StaticResource listItemsPanelTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
         </StackPanel>
-
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>

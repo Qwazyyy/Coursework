@@ -23,24 +23,24 @@
             AddColumn("dbo.Contracts", "DateConclusionContract", c => c.DateTime(nullable: false));
             AddColumn("dbo.Contracts", "DateOfCompletion", c => c.DateTime(nullable: false));
             AddColumn("dbo.Contracts", "ClientID", c => c.Int());
-            AddColumn("dbo.Estimates", "ContractID", c => c.Int(nullable: false));
+            AddColumn("dbo.Estimates", "CurrentContractID", c => c.Int(nullable: false));
             CreateIndex("dbo.Contracts", "ClientID");
-            CreateIndex("dbo.Estimates", "ContractID");
+            CreateIndex("dbo.Estimates", "CurrentContractID");
             AddForeignKey("dbo.Contracts", "ClientID", "dbo.Clients", "ID");
-            AddForeignKey("dbo.Estimates", "ContractID", "dbo.Contracts", "ID", cascadeDelete: true);
+            AddForeignKey("dbo.Estimates", "CurrentContractID", "dbo.Contracts", "ID", cascadeDelete: true);
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Estimates", "ContractID", "dbo.Contracts");
+            DropForeignKey("dbo.Estimates", "CurrentContractID", "dbo.Contracts");
             DropForeignKey("dbo.ServiceEstimates", "Estimate_ID", "dbo.Estimates");
             DropForeignKey("dbo.ServiceEstimates", "Service_ID", "dbo.Services");
             DropForeignKey("dbo.Contracts", "ClientID", "dbo.Clients");
             DropIndex("dbo.ServiceEstimates", new[] { "Estimate_ID" });
             DropIndex("dbo.ServiceEstimates", new[] { "Service_ID" });
-            DropIndex("dbo.Estimates", new[] { "ContractID" });
+            DropIndex("dbo.Estimates", new[] { "CurrentContractID" });
             DropIndex("dbo.Contracts", new[] { "ClientID" });
-            DropColumn("dbo.Estimates", "ContractID");
+            DropColumn("dbo.Estimates", "CurrentContractID");
             DropColumn("dbo.Contracts", "ClientID");
             DropColumn("dbo.Contracts", "DateOfCompletion");
             DropColumn("dbo.Contracts", "DateConclusionContract");

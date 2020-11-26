@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Limewire alt.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -45,6 +48,9 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -72,6 +78,7 @@
     <Compile Include="Entities\Estimate.cs" />
     <Compile Include="Entities\EstimateAndService.cs" />
     <Compile Include="Entities\Service.cs" />
+    <Compile Include="Methods\BackgroundColor.cs" />
     <Compile Include="Methods\DatabaseService.cs" />
     <Compile Include="Migrations\202011181756518_AddTables.cs" />
     <Compile Include="Migrations\202011181756518_AddTables.designer.cs">
@@ -85,6 +92,10 @@
     <Compile Include="Migrations\202011211204273_Con.designer.cs">
       <DependentUpon>202011211204273_Con.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011251227040_AddColumnDeleteForService.cs" />
+    <Compile Include="Migrations\202011251227040_AddColumnDeleteForService.designer.cs">
+      <DependentUpon>202011251227040_AddColumnDeleteForService.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddAndEditClientPage.xaml.cs">
       <DependentUpon>AddAndEditClientPage.xaml</DependentUpon>
     </Compile>
@@ -94,14 +105,26 @@
     <Compile Include="View\AddAndEditReportPage.xaml.cs">
       <DependentUpon>AddAndEditReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddAndEditWindows\AddClientWindow.xaml.cs">
+      <DependentUpon>AddClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddAndEditWindows\EditServiceWindow.xaml.cs">
+      <DependentUpon>EditServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddContractPage.xaml.cs">
       <DependentUpon>AddContractPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\AddEstimate.xaml.cs">
-      <DependentUpon>AddEstimate.xaml</DependentUpon>
+    <Compile Include="View\AddEstimatePage.xaml.cs">
+      <DependentUpon>AddEstimatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddAndEditWindows\AddServiceWindow.xaml.cs">
+      <DependentUpon>AddServiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddAndEditWindows\EditClientWindow.xaml.cs">
+      <DependentUpon>EditClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EstimatePage.xaml.cs">
       <DependentUpon>EstimatePage.xaml</DependentUpon>
@@ -124,15 +147,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddAndEditWindows\AddClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddAndEditWindows\EditServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddContractPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\AddEstimate.xaml">
+    <Page Include="View\AddEstimatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddAndEditWindows\AddServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddAndEditWindows\EditClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +241,9 @@
     <EmbeddedResource Include="Migrations\202011211204273_Con.resx">
       <DependentUpon>202011211204273_Con.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251227040_AddColumnDeleteForService.resx">
+      <DependentUpon>202011251227040_AddColumnDeleteForService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -216,8 +258,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\photo.jpg" />
+    <Resource Include="Images\photo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Limewire alt.ico" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

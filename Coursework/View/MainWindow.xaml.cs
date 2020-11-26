@@ -115,6 +115,7 @@ namespace Coursework.View
                     NavMenu.Visibility = Visibility.Visible;
 
                     Frame.Navigate(new MainPage());
+                    this.Title = "";
                     UserName.Visibility = Visibility.Visible;
                     MainPage.Background = Brushes.MediumTurquoise;
                     UserName.Text = i.Login;
@@ -151,7 +152,7 @@ namespace Coursework.View
 
         private void MainPage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new MainPage());
+            Frame.Navigate(new Uri("View/MainPage.xaml", UriKind.Relative));
             MainPage.Background = Brushes.MediumTurquoise;
             ClientPage.Background = Brushes.Teal;
             EstimatePage.Background = Brushes.Teal;
@@ -162,7 +163,8 @@ namespace Coursework.View
 
         private void ClientPage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new ClientPage());
+            Frame.Navigate(new Uri("View/ClientPage.xaml", UriKind.Relative));
+            //Frame.Navigate(new ClientPage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.MediumTurquoise;
             EstimatePage.Background = Brushes.Teal;
@@ -172,7 +174,8 @@ namespace Coursework.View
 
         private void ContractPage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new ContractPage());
+            Frame.Navigate(new Uri("View/ContractPage.xaml", UriKind.Relative));
+            //Frame.Navigate(new ContractPage());
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
             EstimatePage.Background = Brushes.Teal;
@@ -182,7 +185,7 @@ namespace Coursework.View
 
         private void ServicePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new ServicePage());
+            Frame.Navigate(new Uri("View/ServicePage.xaml", UriKind.Relative));
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
             EstimatePage.Background = Brushes.Teal;
@@ -192,7 +195,7 @@ namespace Coursework.View
 
         private void EstimatePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new EstimatePage());
+            Frame.Navigate(new Uri("View/EstimatePage.xaml", UriKind.Relative));
             MainPage.Background = Brushes.Teal;
             ClientPage.Background = Brushes.Teal;
             EstimatePage.Background = Brushes.MediumTurquoise;

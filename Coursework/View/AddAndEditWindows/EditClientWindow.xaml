@@ -1,0 +1,48 @@
+﻿<Window x:Class="Coursework.View.AddAndEditWindows.EditClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coursework.View.AddAndEditWindows"
+        mc:Ignorable="d"
+        Title="Редактирование" Height="300" Width="400">
+    <Window.Resources>
+        <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+        <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5,10,10,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Имя"/>
+            <TextBox x:Name="ClientFirstName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientFirstName_TextChanged"/>
+            <Rectangle x:Name="ClientFirstNameRectangle" Height="2" Stroke="MediumTurquoise"/>
+            <TextBlock x:Name="ClientFirstNameValidationStatus" Style="{StaticResource ValidationTextBlock}"/>
+
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Фамилия"/>
+            <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged"/>
+            <Rectangle x:Name="ClientLastNameRectangle" Height="2" Stroke="MediumTurquoise"/>
+            <TextBlock x:Name="ClientLastNameValidationStatus" Style="{StaticResource ValidationTextBlock}" />
+
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Номер телефона"/>
+            <TextBox x:Name="ClientPhoneNumber" Style="{StaticResource TextBoxStyleOne}" MaxLength="12" TextChanged="ClientPhoneNumber_TextChanged"/>
+            <Rectangle x:Name="ClientPhoneNumberRectangle" Height="2" Stroke="MediumTurquoise"/>
+            <TextBlock x:Name="ClientPhoneNumberValidationStatus" Style="{StaticResource ValidationTextBlock}"/>
+            
+            <Button x:Name="SaveChangesButton" Style="{StaticResource ButtonNavMenu}"
+                    Margin="10,10,10,5" Content="Сохранить" Click="SaveChangesButton_Click"/>
+            <Button x:Name="CancelChangesButton" Style="{StaticResource ButtonNavMenu}" 
+                    Margin="10,5,10,5" Content="Не сохранять" Click="CancelChangesButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

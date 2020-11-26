@@ -5,43 +5,70 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coursework.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PricePage" Background="White">
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="PricePage" Background="White" FontSize="18">
 
     <Page.Resources>
-        <DataTemplate x:Key="listDataTemplate">
-            <StackPanel Margin="5">
+        <!--<DataTemplate x:Key="listDataTemplate">
+            <StackPanel Margin="5" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                     <TextBlock> <Bold>Наименование работы: </Bold></TextBlock>
                     <TextBlock Text="{Binding Path=Name}"/>
+                    <TextBlock Text="            "/>
+                    <TextBlock Text="{Binding Path=UnitOfMeasurement}"/>
+          
+                    <TextBlock Text="{Binding Path=Price}"/>
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                     <TextBlock> <Bold>Единица измерения: </Bold></TextBlock>
                     <TextBlock Text="{Binding Path=UnitOfMeasurement}"/>
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                     <TextBlock> <Bold>Цена, рублей: </Bold></TextBlock>
                     <TextBlock Text="{Binding Path=Price}"/>
+                    <Rectangle Width="2" Height="20" Stroke="Black"/>
                 </StackPanel>
             </StackPanel>
-        </DataTemplate>
+        </DataTemplate>-->
+        <!--<Style TargetType="DataGridCell">
+            <Style.Setters>
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            </Style.Setters>
+        </Style>-->
     </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="PriceDataGrid" Grid.Row="0" AutoGenerateColumns="False">
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" MinWidth="120">
+                    <TextBlock Text="По наименованию:" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" MinWidth="150">
+                    <TextBox x:Name="ServiceName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ServiceName_TextChanged"/>
+                    <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid x:Name="PriceDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название работы" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn Header="Единица измерения" Binding="{Binding Path=UnitOfMeasurement}"/>
-                <DataGridTextColumn Header="Цена за единицу измерения, руб." Binding="{Binding Path=Price}"/>
+                <DataGridTextColumn Header="Ед. изм." Binding="{Binding Path=UnitOfMeasurement}"/>
+                <DataGridTextColumn Header="Цена за единицу, руб." Binding="{Binding Path=Price}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <ListBox x:Name="ServiceList" Grid.Row="1" FontSize="16" ItemTemplate="{StaticResource listDataTemplate}" ItemsPanel="{StaticResource listItemsPanelTemplate}"/>
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -53,8 +80,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="AddButton" Grid.Column="0" Content="Добавить" Click="AddButton_Click"/>
-            <Button Grid.Column="1" Content="Изменить"/>
-            <Button Grid.Column="2" Content="Удалить"/>
+            <Button x:Name="EditButton" Grid.Column="1" Content="Изменить" Click="EditButton_Click"/>
+            <Button x:Name="DeleteButton" Grid.Column="2" Content="Удалить" Click="DeleteButton_Click"/>
         </Grid>
     </Grid>
 </Page>

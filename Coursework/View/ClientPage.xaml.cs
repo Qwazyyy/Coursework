@@ -16,6 +16,8 @@ using System.Data.Entity;
 using Coursework.Entities;
 using Coursework.Methods;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using Coursework.View.AddAndEditWindows;
 
 namespace Coursework.View
 {
@@ -29,6 +31,7 @@ namespace Coursework.View
         public ClientPage()
         {
             InitializeComponent();
+            Background = BackgroundColor.Colors();
             _context.Clients.Load();
 
             var clientBindingList = _context.Clients.Local.ToBindingList();
@@ -36,30 +39,75 @@ namespace Coursework.View
 
             clients = new ObservableCollection<Client> (clientList);
 
-            ClientTable.ItemsSource = clientBindingList;
             ClientList.ItemsSource = clients;
-
         }
 
         private void AddClient_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("View/AddAndEditClientPage.xaml", UriKind.Relative));
+            AddClientWindow addClientWindow = new AddClientWindow(_context);
+            addClientWindow.ShowDialog();
+            clients.Add(_context.Clients.OrderByDescending(c => c.ID).LastOrDefault());
+            //this.NavigationService.Navigate(new Uri("View/AddAndEditClientPage.xaml", UriKind.Relative));
         }
 
         private void EditClient_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("View/AddAndEditClientPage.xaml", UriKind.Relative));
+            if (ClientList.SelectedItem != null)
+            {
+                Client client = (Client)ClientList.SelectedItem;
+                EditClientWindow editClientWindow = new EditClientWindow(client, clients, _context);
+                editClientWindow.ShowDialog();
+                clients.Remove(client);
+                clients.Add(_context.Clients.Where(c => c.ID == client.ID).FirstOrDefault());
+            }
         }
 
         private void ClientList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //Client test = (Client)ClientList.SelectedItem;
-            //if(test != null)
-            //{
-            //    MessageBox.Show(test.ID.ToString());
-            //    DatabaseService.DeleteRowFromClients(test.ID, _context);
-            //    clients.Remove(test);
-            //}
+           
+        }
+
+        private void ClientLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextInfo textInfo = new CultureInfo("ru-RU").TextInfo;
+            string searchText = textInfo.ToTitleCase(ClientLastName.Text.ToLower());
+            var serchList = from client in clients
+                            where client.LastName.Contains(searchText)
+                            select client;
+            ClientList.ItemsSource = serchList;
+        }
+
+        private void ClientPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchText = ClientPhoneNumber.Text;
+            var serchList = from client in clients
+                            where client.PhoneNumber.Contains(searchText)
+                            select client;
+            ClientList.ItemsSource = serchList;
+        }
+
+        private void DeletClient_Click(object sender, RoutedEventArgs e)
+        {
+            if(ClientList.SelectedIndex > -1)
+            {
+                Client client = (Client)ClientList.SelectedItem;
+                string message = "Данный клиент:" + client.FirstName + client.LastName + "будет удален из базы, продолжить?";
+                MessageBoxButton messageBoxButton = MessageBoxButton.YesNo;
+                string caption = "Удаление клиента";
+
+                var dialogResult = MessageBox.Show(message, caption, messageBoxButton, MessageBoxImage.Question);
+
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    foreach (var contract in _context.Contracts.Where(c => c.ClientID == client.ID))
+                    {
+                        _context.Contracts.Remove(contract);
+                    }
+                    _context.Clients.Remove(client);
+                    _context.SaveChanges();
+                    clients.Remove(clients.Where(c => c.ID == client.ID).FirstOrDefault());
+                }
+            }
         }
     }
 }

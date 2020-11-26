@@ -60,6 +60,7 @@ namespace Coursework.View
             _context.Contracts.Add(contract);
             Status.Text = "Данные сохранены";
             _context.SaveChanges();
+            this.NavigationService.Navigate(new Uri("View/AddEstimatePage.xaml", UriKind.Relative));
         }
     }
 }

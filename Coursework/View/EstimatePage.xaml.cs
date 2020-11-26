@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using Coursework.Entities;
+using Coursework.Methods;
 
 namespace Coursework.View
 {
@@ -26,6 +27,7 @@ namespace Coursework.View
         public EstimatePage()
         {
             InitializeComponent();
+            Background = BackgroundColor.Colors();
             _context.Contracts.Load();
             _context.Estimates.Load();
 

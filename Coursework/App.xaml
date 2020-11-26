@@ -14,7 +14,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--Отсупты для контролов и текст блоков-->
+        <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+        <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5,10,10,0"/>
+        </Style>
         
+        <!--..-->
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
         <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Aquamarine"/>
@@ -73,6 +82,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -107,6 +117,9 @@
             <Setter Property="Control.Margin" Value="0,0,0,10"/>
         </Style>
 
+        <Style x:Key="AddEstimateMargins">
+            <Setter Property="Control.Margin" Value="10,0,10,0"/>
+        </Style>
         <!-- Пасворд бокс без рамок-->
         <ControlTemplate x:Key="PasswordBoxControlTemplateOne" TargetType="{x:Type PasswordBox}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -204,6 +217,14 @@
         <ItemsPanelTemplate x:Key="listItemsPanelTemplate">
             <WrapPanel/>
         </ItemsPanelTemplate>
-        
+
+        <Style x:Key="ValidationTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="PaleVioletRed"/>
+        </Style>
+
+        <Style x:Key="RectangleValidationForTextBox" TargetType="Rectangle">
+            <Setter Property="Stroke" Value="PaleVioletRed"/>
+        </Style>
+
     </Application.Resources>
 </Application>

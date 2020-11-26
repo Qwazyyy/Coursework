@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework.View"
         mc:Ignorable="d"
-        Title="MainWindow" FontFamily="Bold" MinHeight="600" MinWidth="800" Width="800" Height="600" FontSize="18"> 
+        Title="Авторизация" FontFamily="Bold" MinHeight="720" MinWidth="1280" Width="1280" Height="720" FontSize="18"> 
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="photo.jpg"/>
+            <ImageBrush ImageSource="C:/Users/Qwazyyy/Desktop/Coursework/Coursework/Images/photo.jpg"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="Menu" Width="0.15*">
+            <ColumnDefinition x:Name="Menu" Width="0.12*">
             </ColumnDefinition>
             <ColumnDefinition>
             </ColumnDefinition>
