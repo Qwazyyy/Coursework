@@ -64,7 +64,7 @@ namespace Coursework.View.AddAndEditWindows
                 else
                 {
                     ClientFirstNameRectangle.Stroke = Brushes.PaleVioletRed;
-                    ClientFirstNameValidationStatus.Text = "Введите имя без пробелов в формате: 'Евгений'";
+                    ClientFirstNameValidationStatus.Text = "Формат ввода: 'Евгений'";
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace Coursework.View.AddAndEditWindows
                 else
                 {
                     ClientLastNameRectangle.Stroke = Brushes.PaleVioletRed;
-                    ClientLastNameValidationStatus.Text = "Введите фамилию без пробелов в формате: 'Иванов'";
+                    ClientLastNameValidationStatus.Text = "Формат ввода: 'Иванов'";
                 }
             }
         }

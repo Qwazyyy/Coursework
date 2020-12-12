@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework.View.AddAndEditWindows"
         mc:Ignorable="d"
-        Title="Изменение услуги" Height="300" Width="400">
+        Title="Изменение услуги" Style="{StaticResource DialogWindows}">
     <Window.Resources>
         <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
             <Setter Property="Margin" Value="10,10,10,10"/>
@@ -48,9 +48,9 @@
             <TextBlock x:Name="ServicePriceValidationStatus" Style="{StaticResource ValidationTextBlock}"/>
 
             <Button x:Name="AddButton" Style="{StaticResource ButtonNavMenu}"
-                    Margin="10,10,10,5" Content="Добавить" Click="SaveChangesButton_Click"/>
+                    Margin="10,10,10,5" Content="Сохранить изменения" Click="SaveChangesButton_Click"/>
             <Button x:Name="BackButton" Style="{StaticResource ButtonNavMenu}" 
-                    Margin="10,5,10,5" Content="Назад" Click="CancelChangesButton_Click"/>
+                    Margin="10,5,10,5" Content="Отменить изменения" Click="CancelChangesButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

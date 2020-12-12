@@ -13,23 +13,23 @@
             <StackPanel Margin="5" Width="400">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Номер договора: </Bold></TextBlock>
-                    <TextBlock Text="{Binding Path=ID}"/>
+                    <TextBlock Text="{Binding Path=ContractID}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Имя клиента: </Bold></TextBlock>
-                    <TextBlock Text="{Binding Path=ggg}"/>
+                    <TextBlock Text="{Binding Path=FirstName}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Фамилия клиента: </Bold></TextBlock>
-                    <TextBlock Text="{Binding Path=gggg}"/>
+                    <TextBlock Text="{Binding Path=LastName}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Дата заключения договора: </Bold></TextBlock>
-                    <TextBlock Text="{Binding Path=DateConclusionContract}"/>
+                    <TextBlock Text="{Binding Path=DateConclusionContract, StringFormat=d}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Дата окончания работ: </Bold></TextBlock>
-                    <TextBlock Text="{Binding Path=DateOfCompletion}"/>
+                    <TextBlock Text="{Binding Path=DateOfCompletion, StringFormat=d}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock> <Bold>Итоговая стоимость работ, руб.: </Bold></TextBlock>
@@ -41,24 +41,29 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="65"/>
             <RowDefinition/>
-            <RowDefinition Height="0.4*"/>
-            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
-            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" MinWidth="120">
-                    <TextBlock Text="По фамилии клиента:" HorizontalAlignment="Right"/>
-                    <TextBlock Text="По номеру договора:" />
+                <TextBlock Text="По фамилии: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged" 
+                                 Opacity="0.5" Width="150" Height="20"/>
+                        <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" MinWidth="150">
-                    <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged"/>
-                    <Rectangle Height="1" Stroke="MediumTurquoise"/>
-                    <TextBox x:Name="ContractNumber" Text="" Style="{StaticResource TextBoxStyleOne}" TextChanged="ContractNumber_TextChanged"/>
-                    <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <TextBlock Text="По номеру телефона: " />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBox x:Name="ContractNumber" Text="" Style="{StaticResource TextBoxStyleOne}" TextChanged="ContractNumber_TextChanged" 
+                                 Opacity="0.5" Width="150" Height="20"/>
+                        <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -66,7 +71,7 @@
         <ListBox x:Name="ContractList" Grid.Row="1" FontSize="16" ItemTemplate="{StaticResource listTemplate}"
                  ItemsPanel="{StaticResource listItemsPanelTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ContractList_MouseDoubleClick"/>
 
-        <DataGrid x:Name="EstimateSelectedContract" Grid.Row="2" AutoGenerateColumns="False">
+        <!--<DataGrid x:Name="EstimateSelectedContract" Grid.Row="2" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование услуги" Binding="{Binding Path=ServiceName}"/>
                 <DataGridTextColumn Header="Ед. изм." Binding="{Binding Path=ServiceUnit}"/>
@@ -74,19 +79,19 @@
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path=EstimateCount}"/>
                 <DataGridTextColumn Header="Стоимость работ, руб" Binding="{Binding Path=EstimateFullPrice}"/>
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <!--<ColumnDefinition/>-->
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="AddButton" Grid.Column="0" Content="Добавить" Click="AddButton_Click"/>
-            <Button x:Name="EditButton" Grid.Column="1" Content="Изменить" Click="EditButton_Click"/>
+            <!--<Button x:Name="EditButton" Grid.Column="1" Content="Изменить" Click="EditButton_Click" Visibility="Hidden"/>-->
             <Button x:Name="DeleteButton" Grid.Column="2" Content="Удалить" Click="DeleteButton_Click"/>
         </Grid>
     </Grid>

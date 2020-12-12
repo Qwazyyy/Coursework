@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework.View"
         mc:Ignorable="d"
-        Title="Авторизация" FontFamily="Bold" MinHeight="720" MinWidth="1280" Width="1280" Height="720" FontSize="18"> 
+        Title="Авторизация" FontFamily="Bold" MinHeight="720" MinWidth="1280" Width="1440" Height="900" FontSize="18"> 
 
     <Grid>
         <Grid.Background>
@@ -19,35 +19,41 @@
         </Grid.ColumnDefinitions>
         <Grid x:Name="NavMenu">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="MainPage" Grid.Row="0" Style="{StaticResource ButtonNavMenu}" Click="MainPage_Click">Главная</Button>
-            <Button x:Name="ClientPage" Grid.Row="1"  Style="{StaticResource ButtonNavMenu}" Click="ClientPage_Click">Клиенты</Button>
-            <Button x:Name="ContractPage" Grid.Row="2"  Style="{StaticResource ButtonNavMenu}" Click="ContractPage_Click">Договоры</Button>
-            <Button x:Name="EstimatePage" Grid.Row="3"  Style="{StaticResource ButtonNavMenu}" Click="EstimatePage_Click">Сметы</Button>
+            <Button x:Name="MainPage" Grid.Row="1" Style="{StaticResource ButtonNavMenu}" Click="MainPage_Click">Главная</Button>
+            <Button x:Name="ClientPage" Grid.Row="2"  Style="{StaticResource ButtonNavMenu}" Click="ClientPage_Click">Клиенты</Button>
+            <Button x:Name="ContractPage" Grid.Row="3"  Style="{StaticResource ButtonNavMenu}" Click="ContractPage_Click">Договоры</Button>
+            <!--<Button x:Name="EstimatePage" Grid.Row="4"  Style="{StaticResource ButtonNavMenu}" Click="EstimatePage_Click">Сметы</Button>-->
             <Button x:Name="ServicePage" Grid.Row="4"  Style="{StaticResource ButtonNavMenu}" Click="ServicePage_Click">Расценки</Button>
+            <Button Grid.Row="5" x:Name="Exit" Style="{StaticResource ButtonNavMenu}" Content="Выход" Click="Exit_Click"/>
 
-            <StackPanel Grid.Row="5">
-                <!--<Button x:Name="Exit"  Style="{StaticResource ButtonNavMenu}">Выход</Button>-->
-                <TextBlock x:Name="UserName" VerticalAlignment="Bottom" FontSize="20"/>
-            </StackPanel>
+            <Grid Grid.Row="0" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Пользователь" FontSize="23" TextAlignment="Center"/>
+                    <TextBlock x:Name="UserName" FontSize="20" TextAlignment="Center"/>
+                </StackPanel>
+            </Grid>
         </Grid>
         <StackPanel x:Name="LoginStackPanel" Grid.Column="1" MaxWidth="500" Margin="0,0,0,10" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource All}" Text="Логин"/>
-            <TextBox x:Name="Login" Style="{DynamicResource TextBoxStyleOne}" Text="qwazy"/>
-            <Rectangle Height="2" Stroke="MediumTurquoise" Margin="0,0,0,10"/>
+            <TextBox x:Name="Login" Style="{DynamicResource TextBoxStyleOne}" Text=""/>
+            <Rectangle x:Name="RectangleLogin" Height="2" Stroke="MediumTurquoise" Margin="0,0,0,10"/>
             
             <TextBlock Style="{StaticResource All}" Text="Пароль"/>
-            <PasswordBox x:Name="Password" Password="123" Template="{DynamicResource PasswordBoxControlTemplateOne}"/>
-            <Rectangle Height="2" Stroke="MediumTurquoise" Margin="0,0,0,10"/>
+            <PasswordBox x:Name="Password" Password="" Template="{DynamicResource PasswordBoxControlTemplateOne}"/>
+            <Rectangle x:Name="RectanglePassword" Height="2" Stroke="MediumTurquoise" Margin="0,0,0,10"/>
             
-            <Button Style="{StaticResource All}" Content="Войти" Click="Button_Click_Login" MaxWidth="150" Template="{DynamicResource ButtonLoginPage}"/>
-            <Button Style="{StaticResource All}" Content="Регистрация" Click="Button_Click_Reg" MaxWidth="150" Template="{DynamicResource ButtonLoginPage}"/>
+            <Button Style="{StaticResource All}" RenderTransformOrigin="6.9999,3.22222" Content="Войти" Click="Button_Click_Login" MaxWidth="150" Template="{DynamicResource ButtonLoginPage}"/>
+            <!--<Button Style="{StaticResource All}" Content="Регистрация" Click="Button_Click_Reg" MaxWidth="150" Template="{DynamicResource ButtonLoginPage}"/>-->
             
             <TextBlock x:Name="Status" Style="{StaticResource All}" Visibility="Hidden" Foreground="Red" TextAlignment="Center"/>
             

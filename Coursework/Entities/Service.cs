@@ -14,11 +14,5 @@ namespace Coursework.Entities
         public string UnitOfMeasurement { get; set; }
         public int Price { get; set; }
         public bool Delete { get; set; }
-
-        public ICollection<Estimate> Estimates { get; set; }
-        public Service()
-        {
-            Estimates = new List<Estimate>();
-        }
     }
 }

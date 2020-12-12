@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework.View.AddAndEditWindows"
         mc:Ignorable="d"
-        Title="Редактирование" Height="300" Width="400">
+        Title="Редактирование" Style="{StaticResource DialogWindows}">
     <Window.Resources>
         <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
             <Setter Property="Margin" Value="10,10,10,10"/>

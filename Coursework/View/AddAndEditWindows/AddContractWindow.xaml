@@ -1,0 +1,54 @@
+﻿<Window x:Class="Coursework.View.AddAndEditWindows.AddContractWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Coursework.View.AddAndEditWindows"
+        mc:Ignorable="d"
+        Title="Новый контракт" Style="{StaticResource DialogWindows}">
+    <Window.Resources>
+        <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
+            <Setter Property="Margin" Value="10,10,10,10"/>
+        </Style>
+        <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5,10,10,0"/>
+        </Style>
+        <DataTemplate x:Key="comboBoxTemplate">
+            <TextBlock>
+                <Run Text="{Binding Path=FirstName}"/>
+                <Run Text="{Binding Path=LastName}"/>
+                <Run Text="{Binding Path=PhoneNumber}"/>
+            </TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="243*"/>
+            <RowDefinition Height="26*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Клиент"/>
+            <!--<TextBox x:Name="ClientFirstName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientFirstName_TextChanged"/>-->
+            <ComboBox x:Name="ClientsComboBox" IsEditable="True" IsTextSearchEnabled="True" SelectionChanged="ClientsComboBox_SelectionChanged"/>
+            <Rectangle x:Name="ClientRectangle" Height="2" Stroke="PaleVioletRed"/>
+            <TextBlock x:Name="ClientValidationStatus" Style="{StaticResource ValidationTextBlock}" Text="Выберите клиента"/>
+
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Дату окончания работ"/>
+            <DatePicker x:Name="DateFinal" SelectedDateChanged="DateFinal_SelectedDateChanged"/>
+            <Rectangle x:Name="DateFinalRectangle" Height="2" Stroke="PaleVioletRed"/>
+            <TextBlock x:Name="DateFinalValidationStatus" Style="{StaticResource ValidationTextBlock}" 
+                       Text="Выберите дату окончания работ"/>
+
+            <Button x:Name="AddButton" Style="{StaticResource ButtonNavMenu}"
+                    Margin="10,10,10,5" Content="Добавить" Click="AddButton_Click"/>
+            <Button x:Name="BackButton" Style="{StaticResource ButtonNavMenu}" 
+                    Margin="10,5,10,5" Content="Назад" Click="BackButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

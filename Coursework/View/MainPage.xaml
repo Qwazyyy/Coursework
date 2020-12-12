@@ -8,7 +8,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage" Background="White">
 
+    <Page.Resources>
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Margin" Value="50,5,5,5"/>
+            <Setter Property="Foreground" Value="MediumTurquoise"/>
+        </Style>
+        <Style x:Key="Content" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <TextBlock Text="Главная" FontSize="35" HorizontalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Главная" FontSize="35" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Width="300">
+                <TextBlock Text="Клиенты" Style="{StaticResource Title}"/>
+                <TextBlock Text="Данный раздел отвечает за работу с клиентской базой. 
+                           Добавление, изменение и удаление клиентов." Style="{StaticResource Content}" Margin="5,5,5,5"/>
+            </StackPanel>
+            <StackPanel Width="300">
+                <TextBlock Text="Договоры" Style="{StaticResource Title}"/>
+                <TextBlock Text="Данный раздел отвечает за работу с договорами и добавление смет в договоры. 
+                           Добавление, изменение и удаление договоров и смет связанных с ними." Style="{StaticResource Content}"/>
+            </StackPanel>
+            <StackPanel Width="300">
+                <TextBlock Text="Расценки" Style="{StaticResource Title}" />
+                <TextBlock Text="Данный раздел отвечает за работу с предоставляемыми услугами. 
+                           Добавление, изменение, удаление услуг." Style="{StaticResource Content}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

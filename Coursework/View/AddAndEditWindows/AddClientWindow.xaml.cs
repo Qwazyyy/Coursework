@@ -35,7 +35,7 @@ namespace Coursework.View.AddAndEditWindows
                 Client client = new Client { FirstName = ClientFirstName.Text, LastName = ClientLastName.Text, PhoneNumber = ClientPhoneNumber.Text };
                 _context.Clients.Add(client);
                 _context.SaveChanges();
-                this.Close();
+                this.DialogResult = true;
             }
         }
 

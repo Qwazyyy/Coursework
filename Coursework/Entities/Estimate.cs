@@ -10,14 +10,16 @@ namespace Coursework.Entities
     {
         //добавить связи
         public int ID { get; set; }
-        public int Quantity { get; set; }
-        public int FullPrice { get; set; }
+        public double Quantity { get; set; }
+        //public int FullPrice { get; set; }
 
         public int ContractID { get; set; }
-        public ICollection<Service> Services {get;set;}
-        public Estimate()
-        {
-            Services = new List<Service>();
-        }
+        public int ServiceID { get; set; }
+        public Service Service { get; set; }
+        //public ICollection<Service> Services {get;set;}
+       // public Estimate()
+       // {
+           // Services = new List<Service>();
+        //}
     }
 }

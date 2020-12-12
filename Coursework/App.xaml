@@ -226,5 +226,12 @@
             <Setter Property="Stroke" Value="PaleVioletRed"/>
         </Style>
 
+        <Style x:Key="DialogWindows" TargetType="Window">
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="Height" Value="340"/>
+            <Setter Property="FontSize" Value="14"/>
+            
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -10,10 +10,11 @@ namespace Coursework.Entities
     {
         public int ContractID { get; set; }
         //public int ServiceID { get; set; }
+        public int EstimateID { get; set; }
         public string ServiceName { get; set; }
         public int ServicePrice { get; set; }
         public string ServiceUnit { get; set; }
-        public int EstimateFullPrice { get; set; }
-        public int EstimateCount { get; set; }
+        public double EstimateFullPrice { get; set; }
+        public double EstimateCount { get; set; }
     }
 }

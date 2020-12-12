@@ -31,15 +31,18 @@ namespace Coursework.View.AddAndEditWindows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Service service = new Service { Name = ServiceName.Text, UnitOfMeasurement = ServiceUnit.Text, Price = Int32.Parse(ServicePrice.Text) };
-            _context.Services.Add(service);
-            _context.SaveChanges();
-            this.Close();
+            if(ServicePriceValidationStatus.Text == "" && ServiceNameValidationStatus.Text == "")
+            {
+                Service service = new Service { Name = ServiceName.Text, UnitOfMeasurement = ServiceUnit.Text, Price = Int32.Parse(ServicePrice.Text) };
+                _context.Services.Add(service);
+                _context.SaveChanges();
+                this.DialogResult = true;
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.DialogResult = false;
         }
 
         private void ServicePrice_TextChanged(object sender, TextChangedEventArgs e)

@@ -16,6 +16,7 @@ using System.Data.Entity;
 using Coursework.Entities;
 using System.Collections.ObjectModel;
 using Coursework.Methods;
+using Coursework.View.AddAndEditWindows;
 
 namespace Coursework.View
 {
@@ -24,81 +25,149 @@ namespace Coursework.View
     /// </summary>
     public partial class ContractPage : Page
     {
-        private ObservableCollection<EstimateAndService> EstimateAndServices;
+        private ObservableCollection<ContractAndEstimate> ContractAndServices;
         private ObservableCollection<Contract> contracts;
         DatabaseContext _context = new DatabaseContext();
+        
         public ContractPage()
         {
             InitializeComponent();
             Background = BackgroundColor.Colors();
 
-            //var EstimateAndService = _context.Estimates
-            //    .Include(e => e.Services)
-            //    .SelectMany(e => new {EstimateId = e.Id, e.Quantity, e.FullPrice, });
-            _context.Contracts.Include(c => c.Client).Load();
-            List<EstimateAndService> estimateAndServices = new List<EstimateAndService>();
-
-            foreach(var estimate in _context.Estimates.Include(t => t.Services).Where(c => c.ContractID == 2))
+            var contractsAndServices = _context.Contracts.Select(p => new ContractAndEstimate
             {
-                foreach(var service in estimate.Services)
-                {
-                    EstimateAndService estimateAndService = new EstimateAndService
-                    {
-                        ContractID = estimate.ContractID,
-                        ServiceName = service.Name,
-                        ServiceUnit = service.UnitOfMeasurement,
-                        ServicePrice = service.Price,
-                        EstimateCount = estimate.Quantity,
-                        EstimateFullPrice = estimate.FullPrice
-                    };
-                    estimateAndServices.Add(estimateAndService);
-                }
-            }
+                ContractID = p.ID,
+                ClientID = (int)p.ClientID,
+                FirstName = p.Client.FirstName,
+                LastName = p.Client.LastName,
+                DateConclusionContract = p.DateConclusionContract,
+                DateOfCompletion = p.DateOfCompletion,
+                TotalAmount = p.TotalAmount
+            }).ToList();
 
-            EstimateAndServices = new ObservableCollection<EstimateAndService>(estimateAndServices);
-            //var bindinglist = estimateAndServices;
+            ContractAndServices = new ObservableCollection<ContractAndEstimate>(contractsAndServices);
+
+            _context.Contracts.Include(c => c.Client).Load();
+
+            //var test = _context.Contracts.Include(c => c.Client).FirstOrDefault();
+           // MessageBox.Show(test.Client.LastName);
+
             var contract = _context.Contracts.Include(c => c.Client).ToList();
             contracts = new ObservableCollection<Contract>(contract);
-            ContractList.ItemsSource = contracts;
+            ContractList.ItemsSource = ContractAndServices;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("View/AddContractPage.xaml", UriKind.Relative));
+            AddContractWindow addContractWindow = new AddContractWindow(_context);
+
+            var result = addContractWindow.ShowDialog();
+            if(result ==true)
+            {
+                AddEstimateWindow addEstimateWindow = new AddEstimateWindow(_context);
+                result = addEstimateWindow.ShowDialog();
+                if(result == true && _context.Contracts.OrderByDescending(c => c.ID).FirstOrDefault().Estimates.Count() != 0)
+                {
+                    ContractAndServices.Add(_context.Contracts.OrderByDescending(c => c.ID).Select(p => new ContractAndEstimate
+                    {
+                        ContractID = p.ID,
+                        ClientID = (int)p.ClientID,
+                        FirstName = p.Client.FirstName,
+                        LastName = p.Client.LastName,
+                        DateConclusionContract = p.DateConclusionContract,
+                        DateOfCompletion = p.DateOfCompletion,
+                        TotalAmount = p.TotalAmount
+                    }).FirstOrDefault());
+                    ContractList.Items.Refresh();
+                }
+                else
+                {
+                    _context.Contracts.Remove(_context.Contracts.OrderByDescending(c => c.ID).FirstOrDefault());
+                    _context.SaveChanges();
+                    //ContractAndServices.Add(_context.Contracts.OrderByDescending(c => c.ID).Select(p => new ContractAndEstimate
+                    //{
+                    //    ContractID = p.ID,
+                    //    ClientID = (int)p.ClientID,
+                    //    FirstName = p.Client.FirstName,
+                    //    LastName = p.Client.LastName,
+                    //    DateConclusionContract = p.DateConclusionContract,
+                    //    DateOfCompletion = p.DateOfCompletion,
+                    //    TotalAmount = p.TotalAmount
+                    //}).FirstOrDefault());
+                    //ContractList.Items.Refresh();
+                }
+            }
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("View/AddEstimatePage.xaml", UriKind.Relative));
-        }
+        //private void EditButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if(ContractList.SelectedValue != null)
+        //    {
+        //        ContractAndEstimate contractAndEstimate = (ContractAndEstimate)ContractList.SelectedValue;
+        //        EditContractWindow editContractWindow = new EditContractWindow(_context, contractAndEstimate.ContractID);
+        //        var result = editContractWindow.ShowDialog();
+        //        if(result == true)
+        //        {
+        //            //EditEstimateWindow editEstimateWindow = new EditEstimateWindow(_context, contractAndEstimate.ContractID);
+        //            //result = editEstimateWindow.ShowDialog();
+        //            if(result == true)
+        //            {
+        //                //доделать редактирование
+        //                ContractAndServices.Remove(ContractAndServices.Where(c => c.ClientID == contractAndEstimate.ClientID).FirstOrDefault());
+        //                ContractAndServices.Add(_context.Contracts.Where(c => c.ClientID == contractAndEstimate.ClientID).Select(p => new ContractAndEstimate
+        //                {
+        //                    ContractID = p.ID,
+        //                    ClientID = (int)p.ClientID,
+        //                    FirstName = p.Client.FirstName,
+        //                    LastName = p.Client.LastName,
+        //                    DateConclusionContract = p.DateConclusionContract,
+        //                    DateOfCompletion = p.DateOfCompletion,
+        //                    TotalAmount = p.TotalAmount
+        //                }).FirstOrDefault());
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ContractAndServices.Remove(ContractAndServices.Where(c => c.ClientID == contractAndEstimate.ClientID).FirstOrDefault());
+        //            ContractAndServices.Add(_context.Contracts.Where(c => c.ClientID == contractAndEstimate.ClientID).Select(p => new ContractAndEstimate
+        //            {
+        //                ContractID = p.ID,
+        //                ClientID = (int)p.ClientID,
+        //                FirstName = p.Client.FirstName,
+        //                LastName = p.Client.LastName,
+        //                DateConclusionContract = p.DateConclusionContract,
+        //                DateOfCompletion = p.DateOfCompletion,
+        //                TotalAmount = p.TotalAmount
+        //            }).FirstOrDefault());
+        //        }
+
+        //    }
+        //}
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if(ContractList.SelectedValue != null)
+            {
+                ContractAndEstimate contract = (ContractAndEstimate)ContractList.SelectedValue;
+                var result = MessageBox.Show($"Данный договор {contract.ContractID} будет удален, продолжить?","Удаление договора",MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes)
+                {
+                    ContractAndEstimate contractAndEstimate = (ContractAndEstimate)ContractList.SelectedValue;
+                    _context.Contracts.Remove(_context.Contracts.Where(c => c.ID == contractAndEstimate.ContractID).FirstOrDefault());
+                    _context.SaveChanges();
+                    ContractAndServices.Remove(ContractAndServices.Where(c => c.ContractID == contractAndEstimate.ContractID).FirstOrDefault());
+                }
+            }
         }
 
         private void ContractList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Contract contract = (Contract)ContractList.SelectedItem;
-            List<EstimateAndService> estimateAndServices = new List<EstimateAndService>();
-            foreach (var estimate in _context.Estimates.Include(t => t.Services).Where(c => c.ContractID == contract.ID))
+            if(ContractList.SelectedValue != null)
             {
-                foreach (var service in estimate.Services)
-                {
-                    EstimateAndService estimateAndService = new EstimateAndService
-                    {
-                        ContractID = estimate.ContractID,
-                        ServiceName = service.Name,
-                        ServiceUnit = service.UnitOfMeasurement,
-                        ServicePrice = service.Price,
-                        EstimateCount = estimate.Quantity,
-                        EstimateFullPrice = estimate.FullPrice
-                    };
-                    estimateAndServices.Add(estimateAndService);
-                }
+                ContractAndEstimate contract = (ContractAndEstimate)ContractList.SelectedValue;
+                EstimateForContractWindow estimateForContractWindow = new EstimateForContractWindow(_context, contract.ContractID);
+                estimateForContractWindow.ShowDialog();
             }
-            EstimateAndServices = new ObservableCollection<EstimateAndService>(estimateAndServices);
-            EstimateSelectedContract.ItemsSource = EstimateAndServices;
         }
 
         private void ClientLastName_TextChanged(object sender, TextChangedEventArgs e)

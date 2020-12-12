@@ -29,23 +29,29 @@
 
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="65"/>
             <RowDefinition/>
-            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="65"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
-            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="Поиск" TextAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical" MinWidth="120">
-                    <TextBlock Text="По фамилии:" HorizontalAlignment="Right"/>
-                    <TextBlock Text="По номеру телефона:" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="По фамилии: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged" 
+                                 Opacity="0.5" Width="150" Height="20"/>
+                        <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" MinWidth="150">
-                    <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged" Opacity="0.5"/>
-                    <Rectangle Height="1" Stroke="MediumTurquoise" Margin="0,0,0,5"/>
-                    <TextBox x:Name="ClientPhoneNumber" Text="" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientPhoneNumber_TextChanged" Opacity="0.5"/>
-                    <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <TextBlock Text="По номеру телефона: " />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBox x:Name="ClientPhoneNumber" Text="" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientPhoneNumber_TextChanged" 
+                                 Opacity="0.5" Width="150" Height="20"/>
+                        <Rectangle Height="1" Stroke="MediumTurquoise"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

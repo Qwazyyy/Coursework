@@ -45,8 +45,11 @@ namespace Coursework.View
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddServiceWindow addServiceWindow = new AddServiceWindow(_context);
-            addServiceWindow.ShowDialog();
-            services.Add(_context.Services.OrderByDescending(c => c.ID).FirstOrDefault());
+            var reuslt = addServiceWindow.ShowDialog();
+            if(reuslt == true)
+            {
+                services.Add(_context.Services.OrderByDescending(c => c.ID).FirstOrDefault());
+            }
         }
 
         private void ServiceName_TextChanged(object sender, TextChangedEventArgs e)
@@ -57,16 +60,6 @@ namespace Coursework.View
                             where service.Name.Contains(searchText)
                             select service;
             PriceDataGrid.ItemsSource = serchList;
-        }
-
-        private void testprint(object sender, RoutedEventArgs e)
-        {
-            PrintDialog printDialog = new PrintDialog();
-            if(printDialog.ShowDialog() == true)
-            {
-                printDialog.PrintVisual(PriceDataGrid, "Печать таблицы");
-            }
-            
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -86,9 +79,25 @@ namespace Coursework.View
             if(PriceDataGrid.SelectedItem != null)
             {
                 Service service = (Service)PriceDataGrid.SelectedItem;
-                service.Delete = true;
-                _context.SaveChanges();
-                services.Remove(service);
+                string message = "Данная услуга '" + service.Name + "' будет удалена, продолжить?";
+                string caption = "Удаление услуги";
+                MessageBoxButton messageBoxButton = MessageBoxButton.YesNo;
+                var result = MessageBox.Show(message,caption,messageBoxButton, MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes)
+                {
+                    service.Delete = true;
+                    _context.SaveChanges();
+                    services.Remove(service);
+                }
+            }
+        }
+
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(PriceDataGrid, "Печать таблицы");
             }
         }
     }

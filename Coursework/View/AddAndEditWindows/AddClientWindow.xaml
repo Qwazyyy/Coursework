@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Coursework.View.AddAndEditWindows"
         mc:Ignorable="d"
-        Title="Добавление клиента" Height="360" Width="540" FontSize="14" FontFamily="Arial">
+        Title="Добавление клиента" Style="{StaticResource DialogWindows}">
 
     <Window.Resources>
         <Style x:Key="BaseControlStyle" TargetType="{x:Type Control}">
@@ -31,19 +31,19 @@
             <TextBox x:Name="ClientFirstName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientFirstName_TextChanged"/>
             <Rectangle x:Name="ClientFirstNameRectangle" Height="2" Stroke="PaleVioletRed"/>
             <TextBlock x:Name="ClientFirstNameValidationStatus" Style="{StaticResource ValidationTextBlock}" 
-                       Text="Введите имя без пробелов в формате: 'Евгений'"/>
+                       Text="Формат ввода: 'Евгений'"/>
 
             <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Фамилия"/>
             <TextBox x:Name="ClientLastName" Style="{StaticResource TextBoxStyleOne}" TextChanged="ClientLastName_TextChanged"/>
             <Rectangle x:Name="ClientLastNameRectangle" Height="2" Stroke="PaleVioletRed"/>
             <TextBlock x:Name="ClientLastNameValidationStatus" Style="{StaticResource ValidationTextBlock}" 
-                       Text="Введите фамилию без пробелов в формате: 'Иванов'"/>
+                       Text="Формат ввода: 'Иванов'"/>
 
             <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Номер телефона"/>
             <TextBox x:Name="ClientPhoneNumber" Style="{StaticResource TextBoxStyleOne}" MaxLength="12" TextChanged="ClientPhoneNumber_TextChanged"/>
             <Rectangle x:Name="ClientPhoneNumberRectangle" Height="2" Stroke="PaleVioletRed"/>
             <TextBlock x:Name="ClientPhoneNumberValidationStatus" Style="{StaticResource ValidationTextBlock}" 
-                       Text="Введите номер телефона без пробелов в формате: '+79223331122'"/>
+                       Text="Формат ввода: '+79223331122'"/>
 
             <Button x:Name="AddButton" Style="{StaticResource ButtonNavMenu}"
                     Margin="10,10,10,5" Content="Добавить" Click="AddButton_Click"/>

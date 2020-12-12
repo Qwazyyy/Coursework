@@ -75,11 +75,11 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Contract.cs" />
+    <Compile Include="Entities\ContractAndEstimate.cs" />
     <Compile Include="Entities\Estimate.cs" />
     <Compile Include="Entities\EstimateAndService.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Methods\BackgroundColor.cs" />
-    <Compile Include="Methods\DatabaseService.cs" />
     <Compile Include="Migrations\202011181756518_AddTables.cs" />
     <Compile Include="Migrations\202011181756518_AddTables.designer.cs">
       <DependentUpon>202011181756518_AddTables.cs</DependentUpon>
@@ -96,26 +96,21 @@
     <Compile Include="Migrations\202011251227040_AddColumnDeleteForService.designer.cs">
       <DependentUpon>202011251227040_AddColumnDeleteForService.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddAndEditClientPage.xaml.cs">
-      <DependentUpon>AddAndEditClientPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddAndEditServicePage.xaml.cs">
-      <DependentUpon>AddAndEditServicePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddAndEditReportPage.xaml.cs">
-      <DependentUpon>AddAndEditReportPage.xaml</DependentUpon>
+    <Compile Include="Migrations\202012061632575_newbase.cs" />
+    <Compile Include="Migrations\202012061632575_newbase.designer.cs">
+      <DependentUpon>202012061632575_newbase.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AddAndEditWindows\AddClientWindow.xaml.cs">
       <DependentUpon>AddClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddAndEditWindows\AddContractWindow.xaml.cs">
+      <DependentUpon>AddContractWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddAndEditWindows\AddEstimateWindow.xaml.cs">
+      <DependentUpon>AddEstimateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddAndEditWindows\EditServiceWindow.xaml.cs">
       <DependentUpon>EditServiceWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddContractPage.xaml.cs">
-      <DependentUpon>AddContractPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AddEstimatePage.xaml.cs">
-      <DependentUpon>AddEstimatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddAndEditWindows\AddServiceWindow.xaml.cs">
       <DependentUpon>AddServiceWindow.xaml</DependentUpon>
@@ -126,8 +121,8 @@
     <Compile Include="View\AddAndEditWindows\EditClientWindow.xaml.cs">
       <DependentUpon>EditClientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EstimatePage.xaml.cs">
-      <DependentUpon>EstimatePage.xaml</DependentUpon>
+    <Compile Include="View\EstimateForContractWindow.xaml.cs">
+      <DependentUpon>EstimateForContractWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ServicePage.xaml.cs">
       <DependentUpon>ServicePage.xaml</DependentUpon>
@@ -135,31 +130,19 @@
     <Compile Include="View\ContractPage.xaml.cs">
       <DependentUpon>ContractPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\AddAndEditClientPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AddAndEditServicePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AddAndEditReportPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\AddAndEditWindows\AddClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddAndEditWindows\AddContractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddAndEditWindows\AddEstimateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddAndEditWindows\EditServiceWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AddContractPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AddEstimatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -175,7 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EstimatePage.xaml">
+    <Page Include="View\EstimateForContractWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,7 +176,6 @@
     </Compile>
     <Compile Include="Entities\User.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Methods\CheckLogin.cs" />
     <Compile Include="Migrations\202011171915556_AddTableUser.cs" />
     <Compile Include="Migrations\202011171915556_AddTableUser.designer.cs">
       <DependentUpon>202011171915556_AddTableUser.cs</DependentUpon>
@@ -243,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011251227040_AddColumnDeleteForService.resx">
       <DependentUpon>202011251227040_AddColumnDeleteForService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012061632575_newbase.resx">
+      <DependentUpon>202012061632575_newbase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
